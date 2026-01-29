@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mitsubishi Triton 2016 | Premium Listing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      min-height: 100vh;
+    }
+
+    /* Premium Glassmorphism */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .glass-white {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Premium Gradient */
+    .premium-gradient {
+      background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+    }
+
+    .premium-gradient-text {
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Hero Background Pattern */
+    .hero-pattern {
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(52, 211, 153, 0.1) 0%, transparent 50%);
+    }
+
+    /* Image Gallery Styles */
+    .main-image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .main-image {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .main-image-container:hover .main-image {
+      transform: scale(1.05);
+    }
+
+    /* Thumbnail Styles */
+    .thumbnail {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+    }
+
+    .thumbnail.active {
+      border-color: #10b981;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+
+    .thumbnail:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .thumbnail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(5, 150, 105, 0.3));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .thumbnail:hover::before {
+      opacity: 1;
+    }
+
+    .thumbnail::after {
+      content: '\f002';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 1.5rem;
+      color: white;
+      z-index: 2;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .thumbnail:hover::after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.98);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 95%;
+      margin: auto;
+      transform: scale(0.8);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 1rem;
+    }
+
+    .lightbox.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    /* Navigation Buttons */
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: rgba(16, 185, 129, 0.9);
+      border-color: #10b981;
+      transform: scale(1.1);
+    }
+
+    /* Floating Animation */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Shimmer Effect */
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    .shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background-size: 1000px 100%;
+      animation: shimmer 3s infinite;
+    }
+
+    /* Spec Card Hover */
+    .spec-item {
+      transition: all 0.3s ease;
+    }
+
+    .spec-item:hover {
+      background: rgba(16, 185, 129, 0.05);
+      transform: translateX(8px);
+    }
+
+    /* Premium Badge */
+    .premium-badge {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+    }
+
+    /* Pulse Animation */
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(16, 185, 129, 0.8);
+      }
+    }
+
+    .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+    }
+
+    /* Fade In Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-4 {
+      animation-delay: 0.4s;
+    }
+
+    /* Price Tag */
+    .price-tag {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+    }
+  </style>
+</head>
+
+<body class="hero-pattern">
+
+  <!-- Premium Header -->
+  <header class="glass sticky top-0 z-50 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="fade-in-up">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 premium-gradient rounded-2xl flex items-center justify-center float-animation">
+              <i class="fas fa-truck-pickup text-white text-2xl"></i>
+            </div>
+            <div>
+              <h1 class="text-3xl md:text-4xl font-black text-white tracking-tight">
+                Mitsubishi Triton
+              </h1>
+              <p class="text-emerald-400 font-semibold mt-1">
+                <i class="fas fa-circle text-xs mr-2"></i>2016 • White • Premium Condition
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="fade-in-up delay-1">
+          <div class="premium-badge px-8 py-4 rounded-2xl inline-flex items-center gap-3 pulse-glow">
+            <i class="fas fa-star text-white text-xl"></i>
+            <span class="text-white font-black text-lg uppercase tracking-wider">For Sale</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- Gallery Section -->
+      <section class="lg:col-span-2 space-y-6">
+
+        <!-- Main Image -->
+        <div class="glass-white rounded-3xl p-6 fade-in-up delay-2">
+          <div class="main-image-container relative group">
+            <img id="mainImage" src="1.webp" alt="Mitsubishi Triton"
+              class="main-image w-full h-[450px] md:h-[550px] object-cover cursor-pointer"
+              onclick="openLightbox(this.src)">
+
+            <!-- Image Counter -->
+            <div class="absolute top-6 left-6 glass px-4 py-2 rounded-full">
+              <span class="text-white font-bold text-sm">
+                <span id="currentImageNum">1</span> / 4
+              </span>
+            </div>
+
+            <!-- Premium Badge on Image -->
+            <div class="absolute top-6 right-6 bg-gradient-to-r from-yellow-400 to-orange-500 px-4 py-2 rounded-full">
+              <span class="text-white font-black text-xs uppercase tracking-wider">
+                <i class="fas fa-certificate mr-2"></i>Verified
+              </span>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button onclick="changeImage(-1)"
+              class="nav-btn absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+              <i class="fas fa-chevron-left text-white text-xl"></i>
+            </button>
+            <button onclick="changeImage(1)"
+              class="nav-btn absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+              <i class="fas fa-chevron-right text-white text-xl"></i>
+            </button>
+
+            <!-- Zoom Indicator -->
+            <div
+              class="absolute bottom-6 right-6 glass px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all">
+              <span class="text-white font-bold text-sm">
+                <i class="fas fa-expand-alt mr-2"></i>Click to Enlarge
+              </span>
+            </div>
+          </div>
+
+          <!-- Thumbnail Gallery -->
+          <div class="grid grid-cols-4 gap-4 mt-6">
+            <div class="thumbnail active" onclick="setMainImage('1.webp', 0)">
+              <img src="1.webp" class="w-full h-28 object-cover" alt="View 1">
+            </div>
+            <div class="thumbnail" onclick="setMainImage('2.webp', 1)">
+              <img src="2.webp" class="w-full h-28 object-cover" alt="View 2">
+            </div>
+            <div class="thumbnail" onclick="setMainImage('3.webp', 2)">
+              <img src="3.webp" class="w-full h-28 object-cover" alt="View 3">
+            </div>
+            <div class="thumbnail" onclick="setMainImage('4.webp', 3)">
+              <img src="4.webp" class="w-full h-28 object-cover" alt="View 4">
+            </div>
+          </div>
+        </div>
+
+        <!-- Description Card -->
+        <div class="glass-white rounded-3xl p-8 fade-in-up delay-3">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 premium-gradient rounded-xl flex items-center justify-center">
+              <i class="fas fa-file-alt text-white text-xl"></i>
+            </div>
+            <h2 class="text-3xl font-black text-gray-900">Vehicle Description</h2>
+          </div>
+
+          <p class="text-gray-700 leading-relaxed text-lg mb-8">
+            This <strong>Mitsubishi Triton 2016</strong> represents the perfect blend of power, reliability, and style.
+            Meticulously maintained and in pristine condition, this pickup truck is ready to tackle any challenge—from
+            urban commutes to rugged terrain adventures.
+          </p>
+
+          <!-- Premium Features Grid -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="glass p-4 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform">
+              <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-shield-alt text-white"></i>
+              </div>
+              <div>
+                <p class="font-black text-gray-900">Well Maintained</p>
+                <p class="text-xs text-gray-600">Regular Service</p>
+              </div>
+            </div>
+            <div class="glass p-4 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform">
+              <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-gem text-white"></i>
+              </div>
+              <div>
+                <p class="font-black text-gray-900">Premium Interior</p>
+                <p class="text-xs text-gray-600">Spotless Condition</p>
+              </div>
+            </div>
+            <div class="glass p-4 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform">
+              <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-cog text-white"></i>
+              </div>
+              <div>
+                <p class="font-black text-gray-900">Smooth Engine</p>
+                <p class="text-xs text-gray-600">Perfect Performance</p>
+              </div>
+            </div>
+            <div class="glass p-4 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform">
+              <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-car text-white"></i>
+              </div>
+              <div>
+                <p class="font-black text-gray-900">Solid Body</p>
+                <p class="text-xs text-gray-600">No Accidents</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6">
+
+        <!-- Price Card -->
+        <div class="glass-white rounded-3xl p-8 fade-in-up delay-4 sticky top-28">
+
+          <!-- Price Section -->
+          <div class="text-center mb-8 pb-8 border-b border-gray-200">
+            <p class="text-gray-600 font-semibold mb-3 uppercase tracking-wider text-sm">
+              <i class="fas fa-tag mr-2"></i>Asking Price
+            </p>
+            <p class="price-tag premium-gradient-text">
+              $15.000
+            </p>
+            <p class="text-emerald-600 font-bold mt-2 flex items-center justify-center gap-2">
+              <i class="fas fa-handshake"></i>
+              <span>Price Negotiable</span>
+            </p>
+          </div>
+
+          <!-- Specifications -->
+          <div class="mb-8">
+            <h3 class="text-xl font-black text-gray-900 mb-6 flex items-center gap-3">
+              <i class="fas fa-clipboard-list text-emerald-600"></i>
+              Specifications
+            </h3>
+            <div class="space-y-3">
+              <div class="spec-item p-4 rounded-xl">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600 font-semibold flex items-center gap-3">
+                    <i class="fas fa-industry text-emerald-600 w-5"></i>Brand
+                  </span>
+                  <span class="font-black text-gray-900">Mitsubishi</span>
+                </div>
+              </div>
+              <div class="spec-item p-4 rounded-xl">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600 font-semibold flex items-center gap-3">
+                    <i class="fas fa-car text-emerald-600 w-5"></i>Model
+                  </span>
+                  <span class="font-black text-gray-900">Triton</span>
+                </div>
+              </div>
+              <div class="spec-item p-4 rounded-xl">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600 font-semibold flex items-center gap-3">
+                    <i class="fas fa-calendar-alt text-emerald-600 w-5"></i>Year
+                  </span>
+                  <span class="font-black text-gray-900">2016</span>
+                </div>
+              </div>
+              <div class="spec-item p-4 rounded-xl">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600 font-semibold flex items-center gap-3">
+                    <i class="fas fa-palette text-emerald-600 w-5"></i>Color
+                  </span>
+                  <span class="font-black text-gray-900">White</span>
+                </div>
+              </div>
+              <div class="spec-item p-4 rounded-xl">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600 font-semibold flex items-center gap-3">
+                    <i class="fas fa-cogs text-emerald-600 w-5"></i>Transmission
+                  </span>
+                  <span class="font-black text-gray-900">Manual</span>
+                </div>
+              </div>
+              <div class="spec-item p-4 rounded-xl">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600 font-semibold flex items-center gap-3">
+                    <i class="fas fa-gas-pump text-emerald-600 w-5"></i>Fuel
+                  </span>
+                  <span class="font-black text-gray-900">Diesel</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Buttons -->
+          <div class="space-y-4">
+            <a href="tel:+67000000000"
+              class="block premium-gradient text-white py-5 rounded-2xl font-black uppercase tracking-wider text-center shadow-2xl shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:scale-105 transition-all">
+              <i class="fas fa-phone-alt mr-3"></i>Call Now
+            </a>
+            <a href="https://wa.me/67000000000"
+              class="block border-2 border-emerald-500 text-emerald-600 py-5 rounded-2xl font-black uppercase tracking-wider text-center hover:bg-emerald-50 hover:scale-105 transition-all">
+              <i class="fab fa-whatsapp mr-3 text-xl"></i>WhatsApp
+            </a>
+            <button
+              class="w-full border-2 border-gray-300 text-gray-700 py-5 rounded-2xl font-black uppercase tracking-wider hover:bg-gray-50 hover:scale-105 transition-all">
+              <i class="fas fa-heart mr-3"></i>Save Listing
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="mt-8 pt-8 border-t border-gray-200">
+            <div class="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <i class="fas fa-shield-alt text-emerald-600 text-2xl mb-2"></i>
+                <p class="text-xs font-bold text-gray-700">Verified</p>
+              </div>
+              <div>
+                <i class="fas fa-certificate text-emerald-600 text-2xl mb-2"></i>
+                <p class="text-xs font-bold text-gray-700">Authentic</p>
+              </div>
+              <div>
+                <i class="fas fa-handshake text-emerald-600 text-2xl mb-2"></i>
+                <p class="text-xs font-bold text-gray-700">Trusted</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox items-center justify-center" onclick="closeLightbox()">
+    <button onclick="closeLightbox()"
+      class="absolute top-8 right-8 w-16 h-16 nav-btn rounded-full flex items-center justify-center text-white text-2xl z-10 hover:rotate-90 transition-all duration-300">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Lightbox Navigation -->
+    <button onclick="event.stopPropagation(); changeImage(-1)"
+      class="absolute left-8 top-1/2 -translate-y-1/2 w-16 h-16 nav-btn rounded-full flex items-center justify-center text-white text-2xl z-10">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button onclick="event.stopPropagation(); changeImage(1)"
+      class="absolute right-8 top-1/2 -translate-y-1/2 w-16 h-16 nav-btn rounded-full flex items-center justify-center text-white text-2xl z-10">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <img id="lightboxImage" src="" alt="Full size" class="lightbox-content" onclick="event.stopPropagation()">
+  </div>
+
+  <!-- Premium Footer -->
+  <footer class="glass border-t border-white/10 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="text-center">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-10 h-10 premium-gradient rounded-lg flex items-center justify-center">
+            <i class="fas fa-car text-white"></i>
+          </div>
+          <p class="text-white font-black text-xl">Premium Car Listings</p>
+        </div>
+        <p class="text-gray-400 font-medium">
+          <i class="fas fa-copyright mr-2"></i>2026 • Mitsubishi Triton 2016
+        </p>
+        <p class="text-sm text-gray-500 mt-2">
+          Luxury vehicle marketplace powered by modern design
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const images = ['1.webp', '2.webp', '3.webp', '4.webp'];
+    let currentImageIndex = 0;
+
+    function setMainImage(src, index) {
+      const mainImage = document.getElementById('mainImage');
+      const thumbnails = document.querySelectorAll('.thumbnail');
+
+      // Remove active class from all thumbnails
+      thumbnails.forEach(thumb => thumb.classList.remove('active'));
+
+      // Add active class to clicked thumbnail
+      thumbnails[index].classList.add('active');
+
+      // Fade transition
+      mainImage.style.opacity = '0';
+      setTimeout(() => {
+        mainImage.src = src;
+        mainImage.style.opacity = '1';
+        currentImageIndex = index;
+        document.getElementById('currentImageNum').textContent = index + 1;
+      }, 200);
+    }
+
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+      if (currentImageIndex >= images.length) currentImageIndex = 0;
+      setMainImage(images[currentImageIndex], currentImageIndex);
+    }
+
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      lightboxImage.src = src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Smooth transition
+    document.getElementById('mainImage').style.transition = 'opacity 0.3s ease';
+  </script>
+
+</body>
+
+</html>
