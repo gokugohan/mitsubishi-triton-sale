@@ -4,881 +4,256 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mitsubishi Triton 2016 | Ita-Boot Faan</title>
+  <title>Mitsubishi Triton 2016 | Premium Verified</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              DEFAULT: '#960707',
-              light: '#b90909',
-              dark: '#7a0606',
-            },
-            secondary: {
-              DEFAULT: '#1b264f',
-              light: '#2a3a6b',
-              dark: '#0f1629',
-            }
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    body, html {
+      margin: 0; height: 100%; overflow: hidden;
+      font-family: 'Outfit', sans-serif;
+      background-color: #020617; color: #f8fafc;
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f1629 0%, #1b264f 50%, #2a3a6b 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
+    #particles-js { position: absolute; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+
+    .slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity 1.5s ease-in-out;
+      background-size: cover; background-position: center;
+    }
+    .slide.active { opacity: 1; }
+
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.4) 30%, rgba(2,6,23,0.4) 70%, rgba(2,6,23,0.9) 100%);
+      z-index: 3;
     }
 
-    /* Animated Background Particles */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      background: radial-gradient(circle, rgba(150, 7, 7, 0.8), transparent);
-      border-radius: 50%;
-      animation: float-particle 20s infinite ease-in-out;
-    }
-
-    @keyframes float-particle {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-        opacity: 0.3;
-      }
-
-      25% {
-        transform: translate(100px, -100px) scale(1.2);
-        opacity: 0.6;
-      }
-
-      50% {
-        transform: translate(-50px, -200px) scale(0.8);
-        opacity: 0.4;
-      }
-
-      75% {
-        transform: translate(-150px, -100px) scale(1.1);
-        opacity: 0.5;
-      }
-    }
-
-    /* Premium Glassmorphism */
-    .glass {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    .glass-white {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Premium Gradient */
-    .premium-gradient {
-      background: linear-gradient(135deg, #960707 0%, #b90909 50%, #7a0606 100%);
-    }
-
-    .premium-gradient-text {
-      background: linear-gradient(135deg, #960707 0%, #b90909 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .secondary-gradient {
-      background: linear-gradient(135deg, #1b264f 0%, #2a3a6b 100%);
-    }
-
-    /* Animated Gradient Background */
-    @keyframes gradient-shift {
-
-      0%,
-      100% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-    }
-
-    .animated-gradient {
-      background: linear-gradient(270deg, #960707, #b90909, #1b264f, #2a3a6b);
-      background-size: 400% 400%;
-      animation: gradient-shift 15s ease infinite;
-    }
-
-    /* Image Gallery Styles */
-    .main-image-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 2rem;
-      box-shadow: 0 30px 60px -12px rgba(150, 7, 7, 0.4);
-    }
-
-    .main-image {
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      filter: brightness(1.05) contrast(1.1);
-    }
-
-    .main-image-container:hover .main-image {
-      transform: scale(1.08) rotate(1deg);
-    }
-
-    /* Thumbnail Styles with Magnetic Effect */
-    .thumbnail {
-      position: relative;
-      overflow: hidden;
-      border-radius: 1.5rem;
-      cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 3px solid transparent;
-    }
-
-    .thumbnail.active {
-      border-color: #960707;
-      box-shadow: 0 0 30px rgba(150, 7, 7, 0.8), 0 0 60px rgba(150, 7, 7, 0.4);
-      transform: scale(1.1);
-    }
-
-    .thumbnail:hover {
-      transform: translateY(-12px) scale(1.1) rotate(-2deg);
-      box-shadow: 0 25px 50px rgba(150, 7, 7, 0.5);
-    }
-
-    .thumbnail::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(150, 7, 7, 0.5), rgba(27, 38, 79, 0.5));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 1;
-    }
-
-    .thumbnail:hover::before {
-      opacity: 1;
-    }
-
-    .thumbnail::after {
-      content: '\f00e';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0) rotate(-180deg);
-      font-size: 2rem;
-      color: white;
-      z-index: 2;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .thumbnail:hover::after {
-      transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 22, 41, 0.98);
-      z-index: 9999;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .lightbox.active {
-      display: flex;
-      opacity: 1;
-    }
-
-    .lightbox-content {
-      max-width: 95%;
-      max-height: 95%;
-      margin: auto;
-      transform: scale(0.7) rotate(-5deg);
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 1.5rem;
-      box-shadow: 0 40px 80px rgba(150, 7, 7, 0.6);
-    }
-
-    .lightbox.active .lightbox-content {
-      transform: scale(1) rotate(0deg);
-    }
-
-    /* Navigation Buttons with Pulse */
-    .nav-btn {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.4s ease;
-    }
-
-    .nav-btn:hover {
-      background: rgba(150, 7, 7, 0.95);
-      border-color: #b90909;
-      transform: scale(1.2);
-      box-shadow: 0 0 30px rgba(150, 7, 7, 0.8);
-    }
-
-    /* Floating Animation */
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0px) rotate(0deg);
-      }
-
-      50% {
-        transform: translateY(-15px) rotate(5deg);
-      }
-    }
-
-    .float-animation {
-      animation: float 4s ease-in-out infinite;
-    }
-
-    /* Heartbeat Animation */
-    @keyframes heartbeat {
-
-      0%,
-      100% {
-        transform: scale(1);
-      }
-
-      10%,
-      30% {
-        transform: scale(1.1);
-      }
-
-      20%,
-      40% {
-        transform: scale(1.05);
-      }
-    }
-
-    .heartbeat {
-      animation: heartbeat 2s ease-in-out infinite;
-    }
-
-    /* Spec Card Hover with Glow */
-    .spec-item {
-      transition: all 0.4s ease;
-      border-left: 4px solid transparent;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .spec-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, rgba(150, 7, 7, 0.1), transparent);
-      transition: width 0.4s ease;
-    }
-
-    .spec-item:hover::before {
-      width: 100%;
-    }
-
-    .spec-item:hover {
-      background: rgba(150, 7, 7, 0.08);
-      transform: translateX(12px) scale(1.02);
-      border-left-color: #960707;
-      box-shadow: 0 5px 15px rgba(150, 7, 7, 0.2);
-    }
-
-    /* Premium Badge with Shine */
-    .premium-badge {
-      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-      box-shadow: 0 10px 30px rgba(251, 191, 36, 0.5);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .premium-badge::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-      animation: shine 3s infinite;
-    }
-
-    @keyframes shine {
-      0% {
-        transform: translateX(-100%) translateY(-100%) rotate(45deg);
-      }
-
-      100% {
-        transform: translateX(100%) translateY(100%) rotate(45deg);
-      }
-    }
-
-    /* Pulse Glow Animation */
-    @keyframes pulse-glow {
-
-      0%,
-      100% {
-        box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 0 40px rgba(251, 191, 36, 0.3);
-      }
-
-      50% {
-        box-shadow: 0 0 40px rgba(251, 191, 36, 0.8), 0 0 80px rgba(251, 191, 36, 0.5);
-      }
-    }
-
-    .pulse-glow {
-      animation: pulse-glow 2s ease-in-out infinite;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 14px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #0f1629;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #960707, #b90909);
-      border-radius: 7px;
-      border: 2px solid #0f1629;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(135deg, #b90909, #960707);
-    }
-
-    /* Fade In Animation */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    .delay-1 {
-      animation-delay: 0.1s;
-      opacity: 0;
-    }
-
-    .delay-2 {
-      animation-delay: 0.2s;
-      opacity: 0;
-    }
-
-    .delay-3 {
-      animation-delay: 0.3s;
-      opacity: 0;
-    }
-
-    .delay-4 {
-      animation-delay: 0.4s;
-      opacity: 0;
-    }
-
-    /* Price Tag with Sparkle */
-    .price-tag {
-      font-size: 4.5rem;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      text-shadow: 0 5px 25px rgba(150, 7, 7, 0.5);
-      position: relative;
-    }
-
-    /* Feature Card with 3D Effect */
-    .feature-card {
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-      box-shadow: 0 20px 40px rgba(150, 7, 7, 0.3);
-    }
-
-    /* Button Ripple Effect */
-    .btn-ripple {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-ripple::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .btn-ripple:hover::after {
-      width: 300px;
-      height: 300px;
-    }
-
-    /* Trust Badge Rotation */
     .trust-badge {
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(16, 185, 129, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+      padding: 6px 14px;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .trust-badge:hover {
-      transform: scale(1.2) rotate(360deg);
+    .save-btn {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 12px 24px;
+      border-radius: 99px;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      color: white;
+      transition: all 0.3s;
+      animation: softPulse 3s infinite;
+    }
+    .save-btn:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+
+    @keyframes softPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.1); }
+      50% { box-shadow: 0 0 20px 0 rgba(255,255,255,0.2); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.1); }
     }
 
-    /* Sparkle Effect */
-    @keyframes sparkle {
-
-      0%,
-      100% {
-        opacity: 0;
-        transform: scale(0);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .glass-card {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .sparkle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: white;
-      border-radius: 50%;
-      animation: sparkle 2s infinite;
+    #specDrawer {
+      position: fixed; right: -100%; top: 0; width: 100%; height: 100%;
+      background: rgba(2, 6, 23, 0.98); z-index: 110; transition: 0.5s; padding: 30px;
     }
+    @media (min-width: 768px) { #specDrawer { width: 400px; right: -400px; } }
+    #specDrawer.open { right: 0; }
+
+    .spec-trigger {
+      position: fixed; right: 0; top: 40%; transform: translateY(-50%);
+      z-index: 100; writing-mode: vertical-rl;
+      padding: 25px 12px; background: #10b981; color: #020617;
+      font-weight: 900; border-radius: 20px 0 0 20px; cursor: pointer;
+    }
+
+    .lang-btn.active { background: #10b981; color: #020617; }
   </style>
 </head>
 
 <body>
-  <!-- Animated Background Particles -->
-  <div class="particles">
-    <div class="particle" style="width: 100px; height: 100px; top: 10%; left: 20%; animation-delay: 0s;"></div>
-    <div class="particle" style="width: 60px; height: 60px; top: 60%; left: 80%; animation-delay: 2s;"></div>
-    <div class="particle" style="width: 80px; height: 80px; top: 80%; left: 10%; animation-delay: 4s;"></div>
-    <div class="particle" style="width: 50px; height: 50px; top: 30%; left: 70%; animation-delay: 6s;"></div>
+
+  <div id="particles-js"></div>
+
+  <div id="slider">
+    <div class="slide active" style="background-image: url('1.webp')"></div>
+    <div class="slide" style="background-image: url('2.webp')"></div>
+    <div class="slide" style="background-image: url('3.webp')"></div>
+    <div class="slide" style="background-image: url('4.webp')"></div>
+    <div class="hero-overlay"></div>
   </div>
 
-  <!-- Premium Header -->
-  <header class="glass sticky top-0 z-50 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div class="fade-in-up">
-          <div class="flex items-center gap-4">
-            <div
-              class="w-20 h-20 premium-gradient rounded-3xl flex items-center justify-center float-animation shadow-2xl shadow-primary/40">
-              <i class="fas fa-truck-pickup text-white text-3xl"></i>
+  <div class="relative z-10 h-full flex flex-col justify-between p-6 md:p-12">
+    
+    <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+      <div class="space-y-4">
+        <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-none">TRITON <span class="text-emerald-500">2016</span></h1>
+        
+        <div class="flex flex-wrap gap-3">
+            <div class="trust-badge">
+                <i class="fas fa-check-double text-emerald-400"></i>
+                <span id="tag-v" class="text-xs font-black uppercase text-emerald-400">Verifikadu</span>
             </div>
-            <div>
-              <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight">
-                Mitsubishi Triton
-              </h1>
-              <p class="text-red-400 font-bold mt-1 text-lg">
-                <i class="fas fa-circle text-xs mr-2 heartbeat"></i>2016 • Mutin • Kondisaun Di'ak Tebes
-              </p>
+            <div class="trust-badge" style="border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05);">
+                <i class="fas fa-certificate text-white"></i>
+                <span id="tag-a" class="text-xs font-black uppercase text-white">Auténtiku</span>
             </div>
-          </div>
-        </div>
-        <div class="fade-in-up delay-1">
-          <div class="premium-badge px-10 py-5 rounded-3xl inline-flex items-center gap-4 pulse-glow">
-            <i class="fas fa-star text-white text-2xl heartbeat"></i>
-            <span class="text-white font-black text-xl uppercase tracking-wider">Ita-Boot Faan</span>
-          </div>
         </div>
       </div>
+      
+      <div class="flex gap-1 bg-black/50 backdrop-blur-md p-1 rounded-2xl border border-white/10">
+        <button onclick="setLang('tet')" class="lang-btn active px-4 py-2 rounded-xl text-[11px] font-black uppercase transition-all">TET</button>
+        <button onclick="setLang('en')" class="lang-btn px-4 py-2 rounded-xl text-[11px] font-black uppercase transition-all">EN</button>
+        <button onclick="setLang('pt')" class="lang-btn px-4 py-2 rounded-xl text-[11px] font-black uppercase transition-all">PT</button>
+      </div>
     </div>
-  </header>
 
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-      <!-- Gallery Section -->
-      <section class="lg:col-span-2 space-y-8">
-
-        <!-- Main Image -->
-        <div class="glass-white rounded-[2.5rem] p-8 fade-in-up delay-2">
-          <div class="main-image-container relative group">
-            <img id="mainImage" src="1.webp" alt="Mitsubishi Triton"
-              class="main-image w-full h-[450px] md:h-[550px] object-cover cursor-pointer rounded-2xl"
-              onclick="openLightbox(this.src)">
-
-            <!-- Image Counter -->
-            <div class="absolute top-6 left-6 glass px-5 py-3 rounded-full">
-              <span class="text-white font-black text-base">
-                <span id="currentImageNum">1</span> / 4
-              </span>
-            </div>
-
-            <!-- Premium Badge on Image -->
-            <div class="absolute top-6 right-6 premium-gradient px-6 py-3 rounded-full shadow-2xl shadow-primary/50">
-              <span class="text-white font-black text-sm uppercase tracking-wider">
-                <i class="fas fa-certificate mr-2"></i>Verifikadu
-              </span>
-            </div>
-
-            <!-- Navigation Arrows -->
-            <button onclick="changeImage(-1)"
-              class="nav-btn absolute left-6 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-              <i class="fas fa-chevron-left text-white text-2xl"></i>
-            </button>
-            <button onclick="changeImage(1)"
-              class="nav-btn absolute right-6 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-              <i class="fas fa-chevron-right text-white text-2xl"></i>
-            </button>
-
-            <!-- Zoom Indicator -->
-            <div
-              class="absolute bottom-6 right-6 glass px-8 py-4 rounded-full opacity-0 group-hover:opacity-100 transition-all">
-              <span class="text-white font-bold text-base">
-                <i class="fas fa-expand-alt mr-3"></i>Klik Atu Haree Boot
-              </span>
-            </div>
-          </div>
-
-          <!-- Thumbnail Gallery -->
-          <div class="grid grid-cols-4 gap-5 mt-8">
-            <div class="thumbnail active" onclick="setMainImage('1.webp', 0)">
-              <img src="1.webp" class="w-full h-32 object-cover" alt="Haree 1">
-            </div>
-            <div class="thumbnail" onclick="setMainImage('2.webp', 1)">
-              <img src="2.webp" class="w-full h-32 object-cover" alt="Haree 2">
-            </div>
-            <div class="thumbnail" onclick="setMainImage('3.webp', 2)">
-              <img src="3.webp" class="w-full h-32 object-cover" alt="Haree 3">
-            </div>
-            <div class="thumbnail" onclick="setMainImage('4.webp', 3)">
-              <img src="4.webp" class="w-full h-32 object-cover" alt="Haree 4">
-            </div>
-          </div>
+    <div class="max-w-lg space-y-4">
+        <div class="glass-card p-6 rounded-[2rem] border-l-4 border-l-emerald-500">
+            <h4 id="h1-t" class="text-emerald-500 font-black text-xs uppercase mb-1 tracking-widest">Forsa Motor</h4>
+            <p id="h1-d" class="text-white text-base md:text-xl font-medium">Diesel Engine ho dezempeñu maka'as ba terrenu hotu iha Timor-Leste.</p>
         </div>
-
-        <!-- Description Card -->
-        <div class="glass-white rounded-[2.5rem] p-10 fade-in-up delay-3">
-          <div class="flex items-center gap-4 mb-8">
-            <div
-              class="w-16 h-16 premium-gradient rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/40 float-animation">
-              <i class="fas fa-file-alt text-white text-2xl"></i>
-            </div>
-            <h2 class="text-4xl font-black text-gray-900">Deskrisaun Kareta</h2>
-          </div>
-
-          <p class="text-gray-700 leading-relaxed text-xl mb-10">
-            <strong class="text-primary font-black">Mitsubishi Triton 2016</strong> ne'e reprezenta kombinasaun perfetu
-            husi forsa, konfiansa, no estilu. Mantein ho di'ak tebes no iha kondisaun premium, kareta pickup ne'e prontu
-            atu hasoru desafiu hotu—husi viajen iha sidade to'o aventura iha fatin difisil.
-          </p>
-
-          <!-- Premium Features Grid -->
-          <div class="grid grid-cols-2 gap-5">
-            <div class="feature-card glass p-6 rounded-3xl flex items-center gap-4">
-              <div
-                class="w-14 h-14 premium-gradient rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/40">
-                <i class="fas fa-shield-alt text-white text-xl"></i>
-              </div>
-              <div>
-                <p class="font-black text-gray-900 text-lg">Mantein Di'ak</p>
-                <p class="text-sm text-gray-600">Servisu Regulár</p>
-              </div>
-            </div>
-            <div class="feature-card glass p-6 rounded-3xl flex items-center gap-4">
-              <div
-                class="w-14 h-14 secondary-gradient rounded-2xl flex items-center justify-center shadow-2xl shadow-secondary/40">
-                <i class="fas fa-gem text-white text-xl"></i>
-              </div>
-              <div>
-                <p class="font-black text-gray-900 text-lg">Interior Premium</p>
-                <p class="text-sm text-gray-600">Moos Tebes</p>
-              </div>
-            </div>
-            <div class="feature-card glass p-6 rounded-3xl flex items-center gap-4">
-              <div
-                class="w-14 h-14 premium-gradient rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/40">
-                <i class="fas fa-cog text-white text-xl"></i>
-              </div>
-              <div>
-                <p class="font-black text-gray-900 text-lg">Motor Suave</p>
-                <p class="text-sm text-gray-600">Performanse Perfetu</p>
-              </div>
-            </div>
-            <div class="feature-card glass p-6 rounded-3xl flex items-center gap-4">
-              <div
-                class="w-14 h-14 secondary-gradient rounded-2xl flex items-center justify-center shadow-2xl shadow-secondary/40">
-                <i class="fas fa-car text-white text-xl"></i>
-              </div>
-              <div>
-                <p class="font-black text-gray-900 text-lg">Korpu Forte</p>
-                <p class="text-sm text-gray-600">Laiha Asidente</p>
-              </div>
-            </div>
-          </div>
+        <div class="glass-card p-6 rounded-[2rem] border-l-4 border-l-white/20">
+            <h4 id="h2-t" class="text-slate-400 font-black text-xs uppercase mb-1 tracking-widest">Kondisaun Interiór</h4>
+            <p id="h2-d" class="text-white text-base md:text-xl font-medium">Manutensaun regular, kadeira kuro moos no laran luxu tebes.</p>
         </div>
-      </section>
-
-      <!-- Sidebar -->
-      <aside class="space-y-8">
-
-        <!-- Price Card -->
-        <div class="glass-white rounded-[2.5rem] p-10 fade-in-up delay-4 sticky top-28">
-
-          <!-- Price Section -->
-          <div class="text-center mb-10 pb-10 border-b-4 border-gray-200">
-            <p class="text-gray-600 font-bold mb-4 uppercase tracking-wider text-base">
-              <i class="fas fa-tag mr-2"></i>Presu Husu
-            </p>
-            <p class="price-tag premium-gradient-text">
-              $15,000
-            </p>
-            <p class="text-primary font-black mt-4 flex items-center justify-center gap-3 text-lg">
-              <i class="fas fa-handshake text-2xl"></i>
-              <span>Bele Negosia</span>
-            </p>
-          </div>
-
-          <!-- Specifications -->
-          <div class="mb-10">
-            <h3 class="text-2xl font-black text-gray-900 mb-8 flex items-center gap-4">
-              <i class="fas fa-clipboard-list text-primary text-3xl"></i>
-              Espesifikasaun
-            </h3>
-            <div class="space-y-3">
-              <div class="spec-item p-5 rounded-2xl bg-gray-50">
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600 font-bold flex items-center gap-3 text-base">
-                    <i class="fas fa-industry text-primary w-6 text-xl"></i>Marka
-                  </span>
-                  <span class="font-black text-gray-900 text-lg">Mitsubishi</span>
-                </div>
-              </div>
-              <div class="spec-item p-5 rounded-2xl bg-gray-50">
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600 font-bold flex items-center gap-3 text-base">
-                    <i class="fas fa-car text-primary w-6 text-xl"></i>Modelu
-                  </span>
-                  <span class="font-black text-gray-900 text-lg">Triton</span>
-                </div>
-              </div>
-              <div class="spec-item p-5 rounded-2xl bg-gray-50">
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600 font-bold flex items-center gap-3 text-base">
-                    <i class="fas fa-calendar-alt text-primary w-6 text-xl"></i>Tinan
-                  </span>
-                  <span class="font-black text-gray-900 text-lg">2016</span>
-                </div>
-              </div>
-              <div class="spec-item p-5 rounded-2xl bg-gray-50">
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600 font-bold flex items-center gap-3 text-base">
-                    <i class="fas fa-palette text-primary w-6 text-xl"></i>Kór
-                  </span>
-                  <span class="font-black text-gray-900 text-lg">Mutin</span>
-                </div>
-              </div>
-              <div class="spec-item p-5 rounded-2xl bg-gray-50">
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600 font-bold flex items-center gap-3 text-base">
-                    <i class="fas fa-cogs text-primary w-6 text-xl"></i>Transmisaun
-                  </span>
-                  <span class="font-black text-gray-900 text-lg">Manual</span>
-                </div>
-              </div>
-              <div class="spec-item p-5 rounded-2xl bg-gray-50">
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600 font-bold flex items-center gap-3 text-base">
-                    <i class="fas fa-gas-pump text-primary w-6 text-xl"></i>Kombustivel
-                  </span>
-                  <span class="font-black text-gray-900 text-lg">Diesel</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Contact Buttons -->
-          <div class="space-y-5">
-            <a href="tel:+67077385317"
-              class="btn-ripple block premium-gradient text-white py-6 rounded-3xl font-black uppercase tracking-wider text-center shadow-2xl shadow-primary/40 hover:shadow-primary/60 hover:scale-105 transition-all text-lg">
-              <i class="fas fa-phone-alt mr-3 text-xl"></i>Bolu Agora
-            </a>
-            <a href="https://wa.me/77385317"
-              class="btn-ripple block border-4 border-primary text-primary py-6 rounded-3xl font-black uppercase tracking-wider text-center hover:bg-red-50 hover:scale-105 transition-all text-lg">
-              <i class="fab fa-whatsapp mr-3 text-2xl"></i>WhatsApp
-            </a>
-            <button
-              class="btn-ripple w-full secondary-gradient text-white py-6 rounded-3xl font-black uppercase tracking-wider hover:scale-105 transition-all shadow-2xl shadow-secondary/40 text-lg">
-              <i class="fas fa-heart mr-3 text-xl heartbeat"></i>Rai Anúnsiu
-            </button>
-          </div>
-
-          <!-- Trust Badges -->
-          <div class="mt-10 pt-10 border-t-4 border-gray-200">
-            <div class="grid grid-cols-3 gap-6 text-center">
-              <div>
-                <div
-                  class="trust-badge w-16 h-16 mx-auto mb-3 premium-gradient rounded-full flex items-center justify-center shadow-2xl shadow-primary/40">
-                  <i class="fas fa-shield-alt text-white text-2xl"></i>
-                </div>
-                <p class="text-xs font-black text-gray-700">Verifikadu</p>
-              </div>
-              <div>
-                <div
-                  class="trust-badge w-16 h-16 mx-auto mb-3 secondary-gradient rounded-full flex items-center justify-center shadow-2xl shadow-secondary/40">
-                  <i class="fas fa-certificate text-white text-2xl"></i>
-                </div>
-                <p class="text-xs font-black text-gray-700">Auténtiku</p>
-              </div>
-              <div>
-                <div
-                  class="trust-badge w-16 h-16 mx-auto mb-3 premium-gradient rounded-full flex items-center justify-center shadow-2xl shadow-primary/40">
-                  <i class="fas fa-handshake text-white text-2xl"></i>
-                </div>
-                <p class="text-xs font-black text-gray-700">Konfiavel</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </aside>
     </div>
-  </main>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox items-center justify-center" onclick="closeLightbox()">
-    <button onclick="closeLightbox()"
-      class="absolute top-8 right-8 w-20 h-20 nav-btn rounded-full flex items-center justify-center text-white text-3xl z-10 hover:rotate-90 transition-all duration-300">
-      <i class="fas fa-times"></i>
-    </button>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+            <a href="tel:+670000000" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-10 py-5 rounded-2xl font-black text-xl transition-all flex items-center justify-center gap-3 shadow-2xl shadow-emerald-500/40">
+                <i class="fas fa-phone-alt"></i> <span id="btn-call">BOLU AGORA</span>
+            </a>
+            <div class="glass-card px-8 py-4 rounded-2xl flex flex-col justify-center items-center text-center">
+                <p id="price-l" class="text-[10px] font-black text-emerald-500 uppercase">Folin Husu</p>
+                <p class="text-3xl font-black">$15,500</p>
+                <p id="neg-l" class="text-[10px] font-bold text-emerald-400/80 italic mt-1 tracking-wide">Folin bele negosia</p>
+            </div>
+        </div>
 
-    <!-- Lightbox Navigation -->
-    <button onclick="event.stopPropagation(); changeImage(-1)"
-      class="absolute left-8 top-1/2 -translate-y-1/2 w-20 h-20 nav-btn rounded-full flex items-center justify-center text-white text-3xl z-10">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <button onclick="event.stopPropagation(); changeImage(1)"
-      class="absolute right-8 top-1/2 -translate-y-1/2 w-20 h-20 nav-btn rounded-full flex items-center justify-center text-white text-3xl z-10">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-
-    <img id="lightboxImage" src="" alt="Imajen boot" class="lightbox-content" onclick="event.stopPropagation()">
+        <button class="save-btn w-full md:w-auto">
+            <i class="fas fa-heart text-emerald-500 mr-2"></i> <span id="save-l">RAI ANÚNSIU</span>
+        </button>
+    </div>
   </div>
 
-  <!-- Premium Footer -->
-  <footer class="glass border-t border-white/10 mt-24 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="text-center">
-        <p class="text-gray-300 font-bold text-lg">
-          <i class="fas fa-copyright mr-2"></i>2026 • Mitsubishi Triton 2016
-        </p>
-        <p class="text-gray-400 mt-2">
-          Ita-Boot Kareta Premium ho Kualidade Di'ak
-        </p>
-      </div>
+  <div class="spec-trigger" onclick="toggleSpecs()">
+    <i class="fas fa-chevron-left mb-2"></i> <span id="spec-btn-txt">ESPESIFIKASAUN</span>
+  </div>
+
+  <div id="specDrawer">
+    <div class="flex justify-between items-center mb-10">
+        <h2 id="sd-t" class="text-3xl font-black tracking-tighter">Detalles</h2>
+        <button onclick="toggleSpecs()" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-white hover:bg-emerald-500 hover:text-black transition-all"><i class="fas fa-times"></i></button>
     </div>
-  </footer>
+    
+    <div class="space-y-6">
+        <div class="flex justify-between border-b border-white/5 pb-4">
+            <span id="s-marka" class="text-xs text-slate-500 font-black uppercase">Marka</span>
+            <span class="font-bold">Mitsubishi</span>
+        </div>
+        <div class="flex justify-between border-b border-white/5 pb-4">
+            <span id="s-modelu" class="text-xs text-slate-500 font-black uppercase">Modelu</span>
+            <span class="font-bold">Triton</span>
+        </div>
+        <div class="flex justify-between border-b border-white/5 pb-4">
+            <span id="s-tinan" class="text-xs text-slate-500 font-black uppercase">Tinan</span>
+            <span class="font-bold">2016</span>
+        </div>
+        <div class="flex justify-between border-b border-white/5 pb-4">
+            <span id="s-kor" class="text-xs text-slate-500 font-black uppercase">Kór</span>
+            <span id="v-kor" class="font-bold">Mutin</span>
+        </div>
+        <div class="flex justify-between border-b border-white/5 pb-4">
+            <span id="s-trans" class="text-xs text-slate-500 font-black uppercase">Transmisaun</span>
+            <span class="font-bold">Manual</span>
+        </div>
+        <div class="flex justify-between border-b border-white/5 pb-4">
+            <span id="s-fuel" class="text-xs text-slate-500 font-black uppercase">Kombustivel</span>
+            <span class="font-bold text-emerald-500">Diesel</span>
+        </div>
+    </div>
+
+    <div class="mt-12">
+        <a href="#" class="block text-center w-full bg-[#25D366] text-white py-5 rounded-2xl font-black shadow-xl shadow-green-500/20 transition-all hover:opacity-90">
+            <i class="fab fa-whatsapp mr-2"></i> WHATSAPP
+        </a>
+    </div>
+  </div>
 
   <script>
-    const images = ['1.webp', '2.webp', '3.webp', '4.webp'];
-    let currentImageIndex = 0;
-
-    function setMainImage(src, index) {
-      const mainImage = document.getElementById('mainImage');
-      const thumbnails = document.querySelectorAll('.thumbnail');
-
-      thumbnails.forEach(thumb => thumb.classList.remove('active'));
-      thumbnails[index].classList.add('active');
-
-      mainImage.style.opacity = '0';
-      mainImage.style.transform = 'scale(0.95)';
-
-      setTimeout(() => {
-        mainImage.src = src;
-        mainImage.style.opacity = '1';
-        mainImage.style.transform = 'scale(1)';
-        currentImageIndex = index;
-        document.getElementById('currentImageNum').textContent = index + 1;
-      }, 200);
-    }
-
-    function changeImage(direction) {
-      currentImageIndex += direction;
-      if (currentImageIndex < 0) currentImageIndex = images.length - 1;
-      if (currentImageIndex >= images.length) currentImageIndex = 0;
-      setMainImage(images[currentImageIndex], currentImageIndex);
-    }
-
-    function openLightbox(src) {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImage = document.getElementById('lightboxImage');
-      lightboxImage.src = src;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      const lightbox = document.getElementById('lightbox');
-      lightbox.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') changeImage(-1);
-      if (e.key === 'ArrowRight') changeImage(1);
-      if (e.key === 'Escape') closeLightbox();
+    particlesJS("particles-js", {
+      "particles": { "number": { "value": 30 }, "color": { "value": "#10b981" }, "opacity": { "value": 0.2 }, "size": { "value": 2 }, "line_linked": { "enable": true, "distance": 150, "color": "#10b981", "opacity": 0.1 }, "move": { "enable": true, "speed": 0.8 } }
     });
 
-    document.getElementById('mainImage').style.transition = 'all 0.4s ease';
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    function nextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+    setInterval(nextSlide, 5000);
+
+    function toggleSpecs() { document.getElementById('specDrawer').classList.toggle('open'); }
+
+    const data = {
+      tet: { 
+        v: "Verifikadu", a: "Auténtiku", h1t: "Forsa Motor", h1d: "Diesel Engine ho dezempeñu maka'as ba terrenu hotu iha Timor-Leste.", h2t: "Kondisaun Interiór", h2d: "Manutensaun regular, kadeira kuro moos no laran luxu tebes.", 
+        call: "BOLU AGORA", price: "Folin Husu", neg: "Folin bele negosia", save: "RAI ANÚNSIU", sbt: "ESPESIFIKASAUN", sdt: "Detalles", sm: "Marka", smo: "Modelu", st: "Tinan", sk: "Kór", vk: "Mutin", str: "Transmisaun", sf: "Kombustivel" 
+      },
+      en: { 
+        v: "Verified", a: "Authentic", h1t: "Engine Power", h1d: "High-performance Diesel Engine ready for any rough terrain.", h2t: "Interior Condition", h2d: "Regularly serviced, spotless leather seats and premium luxury feel.", 
+        call: "CALL NOW", price: "Asking Price", neg: "Price is negotiable", save: "SAVE LISTING", sbt: "SPECIFICATIONS", sdt: "Details", sm: "Brand", smo: "Model", st: "Year", sk: "Color", vk: "White", str: "Transmission", sf: "Fuel" 
+      },
+      pt: { 
+        v: "Verificado", a: "Autêntico", h1t: "Potência", h1d: "Motor Diesel de alta performance pronto para qualquer terreno difícil.", h2t: "Estado Interior", h2d: "Manutenção regular, bancos de pele impecáveis e sensação premium.", 
+        call: "LIGAR AGORA", price: "Preço Sugerido", neg: "Preço negociável", save: "GUARDAR ANÚNCIO", sbt: "ESPECIFICAÇÕES", sdt: "Detalhes", sm: "Marca", smo: "Modelo", st: "Ano", sk: "Cor", vk: "Branco", str: "Transmissão", sf: "Combustível" 
+      }
+    };
+
+    function setLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      const d = data[lang];
+      document.getElementById('tag-v').innerText = d.v;
+      document.getElementById('tag-a').innerText = d.a;
+      document.getElementById('h1-t').innerText = d.h1t;
+      document.getElementById('h1-d').innerText = d.h1d;
+      document.getElementById('h2-t').innerText = d.h2t;
+      document.getElementById('h2-d').innerText = d.h2d;
+      document.getElementById('btn-call').innerText = d.call;
+      document.getElementById('price-l').innerText = d.price;
+      document.getElementById('neg-l').innerText = d.neg;
+      document.getElementById('save-l').innerText = d.save;
+      document.getElementById('spec-btn-txt').innerText = d.sbt;
+      document.getElementById('sd-t').innerText = d.sdt;
+      document.getElementById('s-marka').innerText = d.sm;
+      document.getElementById('s-modelu').innerText = d.smo;
+      document.getElementById('s-tinan').innerText = d.st;
+      document.getElementById('s-kor').innerText = d.sk;
+      document.getElementById('v-kor').innerText = d.vk;
+      document.getElementById('s-trans').innerText = d.str;
+      document.getElementById('s-fuel').innerText = d.sf;
+    }
   </script>
-
 </body>
-
 </html>
