@@ -94,10 +94,18 @@
   <div id="particles-js"></div>
 
   <div id="slider">
-    <div class="slide active" style="background-image: url('1.webp')"></div>
-    <div class="slide" style="background-image: url('2.webp')"></div>
-    <div class="slide" style="background-image: url('3.webp')"></div>
-    <div class="slide" style="background-image: url('4.webp')"></div>
+    <div class="slide active" style="background-image: url('assets/images/1.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/2.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/3.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/4.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/5.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/6.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/7.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/8.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/9.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/10.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/11.jpg')"></div>
+    <div class="slide" style="background-image: url('assets/images/12.jpg')"></div>
     <div class="hero-overlay"></div>
   </div>
 
@@ -140,17 +148,17 @@
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
             <a href="tel:+670000000" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-10 py-5 rounded-2xl font-black text-xl transition-all flex items-center justify-center gap-3 shadow-2xl shadow-emerald-500/40">
-                <i class="fas fa-phone-alt"></i> <span id="btn-call">BOLU AGORA</span>
+                <i class="fas fa-phone-alt"></i> <span id="btn-call">LIGA AGORA</span>
             </a>
             <div class="glass-card px-8 py-4 rounded-2xl flex flex-col justify-center items-center text-center">
                 <p id="price-l" class="text-[10px] font-black text-emerald-500 uppercase">Folin Husu</p>
-                <p class="text-3xl font-black">$15,500</p>
+                <p class="text-3xl font-black">$15,000</p>
                 <p id="neg-l" class="text-[10px] font-bold text-emerald-400/80 italic mt-1 tracking-wide">Folin bele negosia</p>
             </div>
         </div>
 
-        <button class="save-btn w-full md:w-auto">
-            <i class="fas fa-heart text-emerald-500 mr-2"></i> <span id="save-l">RAI ANÚNSIU</span>
+        <button class="w-full md:w-auto">
+            <i class="fas fa-copyright text-emerald-500 mr-2"></i> <span>Goku</span>
         </button>
     </div>
   </div>
@@ -190,6 +198,14 @@
             <span id="s-fuel" class="text-xs text-slate-500 font-black uppercase">Kombustivel</span>
             <span class="font-bold text-emerald-500">Diesel</span>
         </div>
+        <div class="flex justify-between border-b border-white/5 pb-4">
+            <span id="s-ka" class="text-xs text-slate-500 font-black uppercase">Kilometragem Atual</span>
+            <span class="font-bold text-emerald-500">147.454 km</span>
+        </div>
+        <div class="flex justify-between border-b border-white/5 pb-4">
+            <span id="s-pto" class="text-xs text-slate-500 font-black uppercase">Periodu truka Óleo</span>
+            <span class="font-bold text-emerald-500" id="s-kkm">Kada 3000 km</span>
+        </div>
     </div>
 
     <div class="mt-12">
@@ -218,15 +234,18 @@
     const data = {
       tet: { 
         v: "Verifikadu", a: "Auténtiku", h1t: "Forsa Motor", h1d: "Diesel Engine ho dezempeñu maka'as ba terrenu hotu iha Timor-Leste.", h2t: "Kondisaun Interiór", h2d: "Manutensaun regular, kadeira kuro moos no laran luxu tebes.", 
-        call: "BOLU AGORA", price: "Folin Husu", neg: "Folin bele negosia", save: "RAI ANÚNSIU", sbt: "ESPESIFIKASAUN", sdt: "Detalles", sm: "Marka", smo: "Modelu", st: "Tinan", sk: "Kór", vk: "Mutin", str: "Transmisaun", sf: "Kombustivel" 
+        call: "BOLU AGORA", price: "Folin Husu", neg: "Folin bele negosia", save: "RAI ANÚNSIU", sbt: "ESPESIFIKASAUN", sdt: "Detalles", sm: "Marka", smo: "Modelu", st: "Tinan", sk: "Kór", vk: "Mutin", str: "Transmisaun", sf: "Kombustivel",
+        ka:"Kilometragem Atual",pto:"Periodu truka Óleo",kkm:"Kada 3000 km"
       },
       en: { 
         v: "Verified", a: "Authentic", h1t: "Engine Power", h1d: "High-performance Diesel Engine ready for any rough terrain.", h2t: "Interior Condition", h2d: "Regularly serviced, spotless leather seats and premium luxury feel.", 
-        call: "CALL NOW", price: "Asking Price", neg: "Price is negotiable", save: "SAVE LISTING", sbt: "SPECIFICATIONS", sdt: "Details", sm: "Brand", smo: "Model", st: "Year", sk: "Color", vk: "White", str: "Transmission", sf: "Fuel" 
+        call: "CALL NOW", price: "Asking Price", neg: "Price is negotiable", save: "SAVE LISTING", sbt: "SPECIFICATIONS", sdt: "Details", sm: "Brand", smo: "Model", st: "Year", sk: "Color", vk: "White", str: "Transmission", sf: "Fuel",
+        ka:"Actual Milleage",pto:"Oil Change Period",kkm:"Every 3000 km" 
       },
       pt: { 
         v: "Verificado", a: "Autêntico", h1t: "Potência", h1d: "Motor Diesel de alta performance pronto para qualquer terreno difícil.", h2t: "Estado Interior", h2d: "Manutenção regular, bancos de pele impecáveis e sensação premium.", 
-        call: "LIGAR AGORA", price: "Preço Sugerido", neg: "Preço negociável", save: "GUARDAR ANÚNCIO", sbt: "ESPECIFICAÇÕES", sdt: "Detalhes", sm: "Marca", smo: "Modelo", st: "Ano", sk: "Cor", vk: "Branco", str: "Transmissão", sf: "Combustível" 
+        call: "LIGAR AGORA", price: "Preço Sugerido", neg: "Preço negociável", save: "GUARDAR ANÚNCIO", sbt: "ESPECIFICAÇÕES", sdt: "Detalhes", sm: "Marca", smo: "Modelo", st: "Ano", sk: "Cor", vk: "Branco", str: "Transmissão", sf: "Combustível",
+        ka:"Kilometragem Atual",pto:"Período da troca de Óleo",kkm:"Cada 3000 km" 
       }
     };
 
@@ -253,6 +272,9 @@
       document.getElementById('v-kor').innerText = d.vk;
       document.getElementById('s-trans').innerText = d.str;
       document.getElementById('s-fuel').innerText = d.sf;
+      document.getElementById('s-ka').innerText = d.ka;
+      document.getElementById('s-pto').innerText = d.pto;
+      document.getElementById('s-kkm').innerText = d.kkm;
     }
   </script>
 </body>
