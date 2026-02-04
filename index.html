@@ -249,17 +249,17 @@
     const data = {
       tet: { 
         v: "Verifikadu", a: "Auténtiku", h1t: "Forsa Motor ou potênsia", h1d: "Motor gasóleu ho dezempeñu maka'as ba terrenu difísil.", h2t: "Kondisaun Interiór", h2d: "Manutensaun regular, kadeira impekável/kualidade no ho sensação premium.", 
-        call: "BOLU AGORA", price: "Folin Husu", neg: "Folin bele negosia", save: "RAI ANÚNSIU", sbt: "ESPESIFIKASAUN", sdt: "Detalles", sm: "Marka", smo: "Modelu", st: "Tinan", sk: "Kór", vk: "Mutin", str: "Transmisaun", sf: "Kombustivel",
+        call: "BOLU AGORA", price: "Folin Husu", neg: "Folin bele negosia ou TT", save: "RAI ANÚNSIU", sbt: "ESPESIFIKASAUN", sdt: "Detalles", sm: "Marka", smo: "Modelu", st: "Tinan", sk: "Kór", vk: "Mutin", str: "Transmisaun", sf: "Kombustivel",
         ka:"Kilometragem Atual",pto:"Periodu truka Óleo",kkm:"Kada 3000 km"
       },
       en: { 
         v: "Verified", a: "Authentic", h1t: "Engine Power", h1d: "High-performance Diesel Engine ready for any rough terrain.", h2t: "Interior Condition", h2d: "Regularly serviced, spotless leather seats and premium luxury feel.", 
-        call: "CALL NOW", price: "Asking Price", neg: "Price is negotiable", save: "SAVE LISTING", sbt: "SPECIFICATIONS", sdt: "Details", sm: "Brand", smo: "Model", st: "Year", sk: "Color", vk: "White", str: "Transmission", sf: "Fuel",
+        call: "CALL NOW", price: "Asking Price", neg: "Price is negotiable or Trade-in<sup>+</sup>", save: "SAVE LISTING", sbt: "SPECIFICATIONS", sdt: "Details", sm: "Brand", smo: "Model", st: "Year", sk: "Color", vk: "White", str: "Transmission", sf: "Fuel",
         ka:"Actual Milleage",pto:"Oil Change Period",kkm:"Every 3000 km" 
       },
       pt: { 
         v: "Verificado", a: "Autêntico", h1t: "Potência", h1d: "Motor Diesel de alta performance pronto para qualquer terreno difícil.", h2t: "Estado Interior", h2d: "Manutenção regular, bancos de pele impecáveis e sensação premium.", 
-        call: "LIGAR AGORA", price: "Preço Sugerido", neg: "Preço negociável", save: "GUARDAR ANÚNCIO", sbt: "ESPECIFICAÇÕES", sdt: "Detalhes", sm: "Marca", smo: "Modelo", st: "Ano", sk: "Cor", vk: "Branco", str: "Transmissão", sf: "Combustível",
+        call: "LIGAR AGORA", price: "Preço Sugerido", neg: "Preço negociável ou Troca<sup>+</sup>", save: "GUARDAR ANÚNCIO", sbt: "ESPECIFICAÇÕES", sdt: "Detalhes", sm: "Marca", smo: "Modelo", st: "Ano", sk: "Cor", vk: "Branco", str: "Transmissão", sf: "Combustível",
         ka:"Kilometragem Atual",pto:"Período da troca de Óleo",kkm:"Cada 3000 km" 
       }
     };
@@ -276,7 +276,7 @@
       document.getElementById('h2-d').innerText = d.h2d;
       document.getElementById('btn-call').innerText = d.call;
       document.getElementById('price-l').innerText = d.price;
-      document.getElementById('neg-l').innerText = d.neg;
+      document.getElementById('neg-l').innerHTML = d.neg;
       document.getElementById('save-l').innerText = d.save;
       document.getElementById('spec-btn-txt').innerText = d.sbt;
       document.getElementById('sd-t').innerText = d.sdt;
